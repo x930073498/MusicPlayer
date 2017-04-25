@@ -3,7 +3,11 @@ apply plugin: 'java'
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile 'io.reactivex.rxjava2:rxjava:2.0.9'
-    compile 'com.alibaba:fastjson:1.2.31'
+    compile 'com.squareup.retrofit2:retrofit:2.2.0'
+    compile ('de.ruedigermoeller:fst:2.50'){
+        exclude group:'commons-logging'
+    }
+    compile 'com.squareup.okio:okio:1.11.0'
 }
 
 sourceCompatibility = "1.7"

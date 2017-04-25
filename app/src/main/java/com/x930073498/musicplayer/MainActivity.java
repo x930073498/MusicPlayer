@@ -1,10 +1,12 @@
 package com.x930073498.musicplayer;
 
-import android.databinding.DataBindingUtil;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.PopupMenu;
 import android.widget.TextView;
 
+import com.jakewharton.rxbinding2.support.v7.widget.RxPopupMenu;
+import com.jakewharton.rxbinding2.widget.RxTextView;
 
 
 public class MainActivity extends AppCompatActivity {

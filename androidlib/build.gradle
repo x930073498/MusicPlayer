@@ -5,7 +5,12 @@ android {
     dataBinding {
         enabled = true
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_7
+        targetCompatibility JavaVersion.VERSION_1_7
+    }
     defaultConfig {
+
         minSdkVersion 15
         targetSdkVersion 25
         versionCode 1
@@ -26,18 +31,32 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support.constraint:constraint-layout:1.0.2'
-    compile 'com.android.support:appcompat-v7:25.3.1'
+    compile  ('com.android.support.constraint:constraint-layout:1.0.2'){
+        exclude group:'com.android.support'
+    }
+    compile ('com.android.support:appcompat-v7:25.3.1'){
+        exclude group:'com.android.support',module:'animated-vector-drawable'
+        exclude group:'com.android.support',module:'recyclerview'
+    }
     testCompile 'junit:junit:4.12'
     compile project(':javalib')
     compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
     compile 'org.ligboy.retrofit2:converter-fastjson-android:2.1.0'
-    annotationProcessor 'com.google.dagger:dagger-android-processor:2.11-rc1'
-    compile 'com.google.dagger:dagger-android-support:2.11-rc1'
-    compile 'com.google.dagger:dagger-android:2.11-rc1'
+//    compile 'com.google.dagger:dagger:2.8'
+    annotationProcessor 'com.google.dagger:dagger-android-processor:2.10'
+    compile 'com.google.dagger:dagger-android-support:2.10'
+    compile 'com.google.dagger:dagger-android:2.10'
     compile 'com.jakewharton.rxbinding2:rxbinding:2.0.0'
     compile 'com.jakewharton.rxbinding2:rxbinding-recyclerview-v7:2.0.0'
     compile 'com.jakewharton.rxbinding2:rxbinding-appcompat-v7:2.0.0'
     compile 'com.jakewharton.rxbinding2:rxbinding-support-v4:2.0.0'
     compile 'com.hwangjr.rxbus:rxbus:2.0.0-beta'
+    compile 'com.trello.rxlifecycle2:rxlifecycle-navi:2.0.1'
+    compile 'com.trello.rxlifecycle2:rxlifecycle-android:2.0.1'
+    compile 'com.trello.rxlifecycle2:rxlifecycle-components:2.0.1'
+
+
+
+
+
 }

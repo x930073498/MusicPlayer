@@ -1,1 +1,2 @@
 include ':app', ':javalib', ':androidlib', ':appcore'
+//include ':app',  ':androidlib', ':appcore'

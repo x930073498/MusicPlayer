@@ -2,11 +2,8 @@ package com.x930073498.musicplayer;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.PopupMenu;
 import android.widget.TextView;
 
-import com.jakewharton.rxbinding2.support.v7.widget.RxPopupMenu;
-import com.jakewharton.rxbinding2.widget.RxTextView;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -21,8 +18,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 //         Example of a call to a native method
-//        TextView tv = (TextView) findViewById(R.id.sample_text);
-//        tv.setText(stringFromJNI());
+        TextView tv = (TextView) findViewById(R.id.sample_text);
+        tv.setText(stringFromJNI());
     }
 
     /**

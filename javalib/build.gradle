@@ -1,4 +1,5 @@
 apply plugin: 'java'
+apply plugin: 'me.tatarka.retrolambda'
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile 'io.reactivex.rxjava2:rxjava:2.0.9'
@@ -13,6 +14,6 @@ dependencies {
 
 }
 
-sourceCompatibility = '1.7'
-targetCompatibility = '1.7'
+sourceCompatibility = '1.8'
+targetCompatibility = '1.8'
 

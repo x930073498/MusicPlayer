@@ -31,18 +31,22 @@ dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
+        exclude group: 'com.google.code.findbugs', module: 'jsr305'
+
     })
-    compile  ('com.android.support.constraint:constraint-layout:1.0.2'){
-        exclude group:'com.android.support'
+    compile('com.android.support.constraint:constraint-layout:1.0.2') {
+        exclude group: 'com.android.support'
     }
-    compile ('com.android.support:appcompat-v7:25.3.1'){
-        exclude group:'com.android.support',module:'animated-vector-drawable'
-        exclude group:'com.android.support',module:'recyclerview'
+    compile('com.android.support:appcompat-v7:25.3.1') {
+        exclude group: 'com.android.support', module: 'animated-vector-drawable'
+        exclude group: 'com.android.support', module: 'recyclerview'
     }
     testCompile 'junit:junit:4.12'
     compile project(':javalib')
     compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
     compile 'org.ligboy.retrofit2:converter-fastjson-android:2.1.0'
+    annotationProcessor 'com.google.dagger:dagger-android-processor:2.10'
+    annotationProcessor 'com.google.dagger:dagger-compiler:2.10'
     annotationProcessor 'com.google.dagger:dagger-android-processor:2.10'
     compile 'com.google.dagger:dagger-android-support:2.10'
     compile 'com.google.dagger:dagger-android:2.10'
@@ -54,9 +58,5 @@ dependencies {
     compile 'com.trello.rxlifecycle2:rxlifecycle-navi:2.0.1'
     compile 'com.trello.rxlifecycle2:rxlifecycle-android:2.0.1'
     compile 'com.trello.rxlifecycle2:rxlifecycle-components:2.0.1'
-
-
-
-
-
+    compile 'com.jakewharton.retrofit:retrofit2-rxjava2-adapter:1.0.0'
 }

@@ -7,14 +7,16 @@ import android.view.View;
 import com.bumptech.glide.Glide;
 import com.caimuhao.rxpicker.RxPicker;
 import com.hwangjr.rxbus.RxBus;
-import com.x930073498.core.base.BaseActivity;
+import com.x930073498.core.mvvm.BaseActivity;
 import com.x930073498.musicplayer.databinding.ActivityMainBinding;
+import com.x930073498.musicplayer.view.MainView;
+import com.x930073498.musicplayer.vm.MainViewMode;
 
 import io.reactivex.Flowable;
 import sj.mblog.L;
 
 
-public class MainActivity extends BaseActivity<ActivityMainBinding> {
+public class MainActivity extends BaseActivity<ActivityMainBinding,MainViewMode> implements MainView{
 
     // Used to load the 'native-lib' library on application startup.
     static {
@@ -28,7 +30,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
         RxBus.get().register(this);
         setContentView(R.layout.activity_main);
 //        ActivityMainBinding activityMainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
-        binding.setText("测试");
+        dataBinding.setText("测试");
         RxPicker.init((imageView, path, width, height) -> Glide.with(imageView.getContext())
                 .load(path)
                 .override(width, height)

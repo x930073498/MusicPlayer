@@ -4,6 +4,8 @@ import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 
 import java.util.concurrent.TimeUnit;
 
+import javax.inject.Inject;
+import javax.inject.Named;
 import javax.inject.Singleton;
 
 import dagger.Module;
@@ -17,7 +19,8 @@ import retrofit2.converter.fastjson.FastJsonConverterFactory;
  */
 @Module
 public class ApiModule {
-    private static final String baseUrl = "";
+    @Inject
+    String baseUrl = "";
 
     @Provides
     @Singleton
@@ -30,8 +33,13 @@ public class ApiModule {
     }
 
     @Provides
+    String provideBaseUrl() {
+        return baseUrl;
+    }
+
+    @Provides
     @Singleton
-    Retrofit provideRetrofit(OkHttpClient client) {
+    Retrofit provideRetrofit(OkHttpClient client, String baseUrl) {
         Retrofit retrofit = new Retrofit.Builder()
                 .client(client)
                 .addConverterFactory(FastJsonConverterFactory.create())

@@ -64,7 +64,7 @@ dependencies {
     compile 'com.caimuhao:rxpicker:1.1.4'
     compile 'com.github.bumptech.glide:glide:3.7.0'
     compile 'com.github.w446108264:MBLog:1.0.3'
-    annotationProcessor 'com.google.dagger:dagger-android-processor:2.10'
-    annotationProcessor 'com.google.dagger:dagger-compiler:2.10'
-    annotationProcessor 'com.google.dagger:dagger-android-processor:2.10'
+    annotationProcessor 'com.google.dagger:dagger-android-processor:2.11-rc1'
+    annotationProcessor 'com.google.dagger:dagger-compiler:2.11-rc1'
+    compile 'com.google.dagger:dagger-android-support:2.11-rc1'
 }

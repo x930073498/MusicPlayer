@@ -19,11 +19,15 @@ import retrofit2.converter.fastjson.FastJsonConverterFactory;
  */
 @Module
 public class ApiModule {
-    @Inject
-    String baseUrl = "";
+    String baseUrl = "http://localhost:8080/";
+
+//    public ApiModule(String baseUrl) {
+//        this.baseUrl = baseUrl;
+//    }
 
     @Provides
     @Singleton
+    @Named(value = "base")
     OkHttpClient provideOkHttpClient() {
         OkHttpClient client = new OkHttpClient.Builder()
                 .connectTimeout(60 * 1000, TimeUnit.MILLISECONDS)
@@ -33,12 +37,14 @@ public class ApiModule {
     }
 
     @Provides
+    @Named(value = "base")
     String provideBaseUrl() {
         return baseUrl;
     }
 
     @Provides
     @Singleton
+    @Named(value = "base")
     Retrofit provideRetrofit(OkHttpClient client, String baseUrl) {
         Retrofit retrofit = new Retrofit.Builder()
                 .client(client)

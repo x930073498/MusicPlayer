@@ -11,9 +11,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.hwangjr.rxbus.RxBus;
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
+import com.x930073498.androidLib.utils.ToastUtil;
 
 
 import javax.inject.Inject;
@@ -25,14 +27,15 @@ import dagger.android.AndroidInjection;
  * Created by x930073498 on 17-5-3.
  */
 
-public abstract class BaseActivity<DATA_BINDING extends ViewDataBinding, VM extends IVM> extends RxAppCompatActivity  {
+public abstract class BaseActivity<DATA_BINDING extends ViewDataBinding, VM extends IVM> extends RxAppCompatActivity {
     protected DATA_BINDING dataBinding;
+    @Inject
     protected VM ViewModel;
-
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        AndroidInjection.inject(this);
+        if (useAndroidInject())
+            AndroidInjection.inject(this);
         super.onCreate(savedInstanceState);
         RxBus.get().register(this);
     }
@@ -46,7 +49,7 @@ public abstract class BaseActivity<DATA_BINDING extends ViewDataBinding, VM exte
         View contentView = LayoutInflater.from(this).inflate(layoutResID, null, false);
         dataBinding = DataBindingUtil.bind(contentView);
         setContentView(contentView);
-        if (ViewModel==null) Log.d("xj","view_model is null");
+        if (ViewModel == null) Log.d("xj", "view_model is null");
 
     }
 
@@ -62,9 +65,29 @@ public abstract class BaseActivity<DATA_BINDING extends ViewDataBinding, VM exte
         if (dataBinding == null) dataBinding = DataBindingUtil.bind(view);
     }
 
+    protected boolean useAndroidInject() {
+        return false;
+    }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
         RxBus.get().unregister(this);
+    }
+
+    protected void toast(String msg, int duration) {
+        ToastUtil.show(this, msg, duration);
+    }
+
+    protected void toast(String msg) {
+        toast(msg, Toast.LENGTH_SHORT);
+    }
+
+    protected void toast(int resId, int duration) {
+        ToastUtil.show(this, resId, duration);
+    }
+
+    protected void toast(int resId) {
+        toast(resId, Toast.LENGTH_SHORT);
     }
 }

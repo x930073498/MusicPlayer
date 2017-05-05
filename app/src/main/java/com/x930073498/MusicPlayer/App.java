@@ -1,20 +1,25 @@
-package com.x930073498.musicplayer;
+package com.x930073498.MusicPlayer;
 
+
+import com.x930073498.MusicPlayer.dependencies.core.DaggerAppComponent;
 import com.x930073498.core.mvvm.BaseApplication;
-import com.x930073498.musicplayer.component.DaggerAppComponent;
+
 
 /**
- * Created by x930073498 on 17-5-3.
+ * Created by rakshakhegde on 26/04/17.
  */
 
-public class MusicApplication extends BaseApplication {
+public class App extends BaseApplication {
     @Override
     public void onCreate() {
         super.onCreate();
+
         DaggerAppComponent
                 .builder()
                 .app(this)
+
                 .build()
                 .inject(this);
     }
+
 }

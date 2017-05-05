@@ -1,78 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
+        <!--<variable-->
+        <!--name="data"-->
+        <!--type="com.x930073498.MusicPlayer.screen.model.MainModel" />-->
+
         <variable
-            name="text"
-            type="String" />
+            name="VM"
+            type="com.x930073498.MusicPlayer.screen.viewModel.MainViewModel" />
     </data>
 
     <android.support.constraint.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="com.x930073498.musicplayer.MainActivity">
+        tools:context="com.x930073498.MusicPlayer.screen.activity.MainActivity">
 
-        <TextView
-            android:id="@+id/sample_text"
+        <Button
+            android:id="@+id/button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{text}"
+            android:onClick="@{() -> VM.showBtnClicked()}"
+            android:text="@={VM.data.toastText}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
-            android:id="@+id/image"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+        <Button
+            android:text="@{VM.data.startAction}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
-
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
             android:layout_marginTop="8dp"
-            android:src="@color/colorAccent"
-            app:layout_constraintBottom_toTopOf="@+id/sample_text"
+            android:onClick="@{()->VM.startActivity()}"
+            app:layout_constraintBottom_toTopOf="@+id/button"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <Button
-            android:id="@+id/button2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginTop="8dp"
-            app:layout_constraintBottom_toTopOf="@+id/image"
-            app:layout_constraintHorizontal_bias="0.714"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.514" />
-
-        <Button
-            android:id="@+id/button1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginTop="8dp"
-            android:onClick="onClick"
-            android:text="点击"
-            app:layout_constraintBottom_toTopOf="@+id/image"
-            app:layout_constraintHorizontal_bias="0.298"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toLeftOf="@+id/button2"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.514" />
-
     </android.support.constraint.ConstraintLayout>
-
 </layout>

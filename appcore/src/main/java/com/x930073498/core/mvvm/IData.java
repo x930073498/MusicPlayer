@@ -10,4 +10,6 @@ import java.io.Serializable;
  */
 
 public class IData extends BaseObservable implements Serializable {
+    public IData() {
+    }
 }

@@ -2,10 +2,10 @@ package com.x930073498.androidLib.RxResultActivity;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
-import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
+import android.support.v4.app.Fragment;
 
 import io.reactivex.subjects.BehaviorSubject;
 import io.reactivex.subjects.PublishSubject;
@@ -15,16 +15,16 @@ import io.reactivex.subjects.PublishSubject;
  * Created by x930073498 on 17-5-5.
  */
 
-public class ResultHandleFragment<T> extends Fragment {
+public class ResultHandleFragmentN<T> extends Fragment {
     public static final int REQUEST_CODE = 1200;
 
     private int requestCode;
 
     private String key;
 
-    public static <T> ResultHandleFragment<T> newInstance(Class<T> result, String key, int requestCode) {
+    public static <T> ResultHandleFragmentN<T> newInstance(Class<T> result, String key, int requestCode) {
 
-        ResultHandleFragment<T> fragment = new ResultHandleFragment<>();
+        ResultHandleFragmentN<T> fragment = new ResultHandleFragmentN<>();
         fragment.key = key;
         fragment.requestCode = requestCode;
         return fragment;

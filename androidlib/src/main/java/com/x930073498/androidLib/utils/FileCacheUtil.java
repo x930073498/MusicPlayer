@@ -52,6 +52,7 @@ public class FileCacheUtil {
         return true;
     }
 
+    @SuppressWarnings("unchecked")
     public static <T extends Serializable> T load(String path) {
         if (TextUtils.isEmpty(path)) return null;
         File file = new File(path);

@@ -1,7 +1,6 @@
 package com.x930073498.MusicPlayer.screen.activity;
 
 import android.os.Bundle;
-import android.widget.Toast;
 
 import com.trello.rxlifecycle2.android.ActivityEvent;
 import com.x930073498.MusicPlayer.screen.view.MainView;
@@ -33,7 +32,21 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
 
     @Override
     public void handStartActivity() {
-        RxResult.of(String.class).activity(SecondActivity.class).requestCode(1000).key("data").start(this).compose(this.bindUntilEvent(ActivityEvent.DESTROY)).subscribe(this::toast);
+//        RxResultN.of(String.class)
+//                .activity(SecondActivity.class)
+//                .requestCode(1000)
+//                .key("data")
+//                .start(this)
+//                .compose(this.bindUntilEvent(ActivityEvent.DESTROY))
+//                .subscribe(this::toast);
+        RxResult
+                .of(String.class)
+                .activity(SecondActivity.class)
+                .requestCode(1000)
+                .key("data")
+                .start(this)
+                .compose(this.bindUntilEvent(ActivityEvent.DESTROY))
+                .subscribe(this::toast);
     }
 
 }

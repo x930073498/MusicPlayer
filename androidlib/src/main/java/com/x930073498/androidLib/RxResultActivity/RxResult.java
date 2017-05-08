@@ -2,6 +2,9 @@ package com.x930073498.androidLib.RxResultActivity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Paint;
+import android.os.Handler;
+import android.os.Looper;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -50,16 +53,12 @@ public class RxResult<T> {
         return new RxResult<>(result);
     }
 
-    /**
-     * start picker from activity
-     */
+
     public Observable<T> start(AppCompatActivity activity) {
         return start(activity.getSupportFragmentManager());
     }
 
-    /**
-     * start picker from fragment
-     */
+
     public Observable<T> start(Fragment fragment) {
         return start(fragment.getFragmentManager());
     }

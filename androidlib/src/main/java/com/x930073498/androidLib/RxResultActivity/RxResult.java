@@ -5,6 +5,7 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Intent;
+import android.os.Bundle;
 
 import io.reactivex.Observable;
 import io.reactivex.ObservableSource;
@@ -22,6 +23,8 @@ public class RxResult<T> {
 
     private Class<T> result;
 
+    private Bundle bundle;
+
     private int requestCode = -1;
     private String key;
 
@@ -37,6 +40,11 @@ public class RxResult<T> {
 
     public RxResult<T> key(String key) {
         this.key = key;
+        return this;
+    }
+
+    public RxResult<T> bundle(Bundle bundle) {
+        this.bundle = bundle;
         return this;
     }
 
@@ -80,6 +88,7 @@ public class RxResult<T> {
             public ObservableSource<T> apply(@NonNull Boolean aBoolean)
                     throws Exception {
                 Intent intent = new Intent(finalFragment.getActivity(), target);
+                intent.putExtras(bundle);
                 finalFragment.startActivityForResult(intent, requestCode == -1 ? ResultHandleFragment.REQUEST_CODE : requestCode);
                 return finalFragment.getResultSubject();
             }

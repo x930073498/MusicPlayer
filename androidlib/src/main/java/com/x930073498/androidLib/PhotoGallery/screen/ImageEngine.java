@@ -1,4 +1,4 @@
-package com.x930073498.androidLib.PhotoGallery;
+package com.x930073498.androidLib.PhotoGallery.screen;
 
 import android.content.Context;
 import android.view.View;

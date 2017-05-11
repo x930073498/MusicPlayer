@@ -1,9 +1,5 @@
 package com.x930073498.androidLib.PhotoGallery.dependencies;
-
-import com.x930073498.MusicPlayer.dependencies.module.MainModule;
-import com.x930073498.MusicPlayer.dependencies.module.SecondModule;
-import com.x930073498.MusicPlayer.screen.activity.MainActivity;
-import com.x930073498.MusicPlayer.screen.activity.SecondActivity;
+import com.x930073498.androidLib.PhotoGallery.screen.activity.GalleryActivity;
 
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
@@ -14,10 +10,6 @@ import dagger.android.ContributesAndroidInjector;
 @Module
 public abstract class InjectorsModule {
 
-    @ContributesAndroidInjector(modules = {MainModule.class})
-    abstract MainActivity mainActivity();
-
-    @ContributesAndroidInjector(modules = {SecondModule.class})
-    abstract SecondActivity secondActivity();
-//	Add more ContributesAndroidInjector here...
+    @ContributesAndroidInjector(modules = {GalleryModule.class})
+    abstract GalleryActivity activity();
 }

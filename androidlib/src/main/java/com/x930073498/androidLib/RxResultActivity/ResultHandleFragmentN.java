@@ -7,6 +7,8 @@ import android.content.Intent;
 import android.os.Build;
 import android.support.v4.app.Fragment;
 
+import com.trello.rxlifecycle2.components.support.RxFragment;
+
 import io.reactivex.subjects.BehaviorSubject;
 import io.reactivex.subjects.PublishSubject;
 
@@ -15,7 +17,7 @@ import io.reactivex.subjects.PublishSubject;
  * Created by x930073498 on 17-5-5.
  */
 
-public class ResultHandleFragmentN<T> extends Fragment {
+public class ResultHandleFragmentN<T> extends RxFragment {
     public static final int REQUEST_CODE = 1200;
 
     private int requestCode;

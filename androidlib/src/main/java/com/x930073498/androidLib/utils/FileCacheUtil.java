@@ -1,6 +1,12 @@
 package com.x930073498.androidLib.utils;
 
+import android.Manifest;
+import android.content.Context;
+import android.content.pm.PackageManager;
+import android.os.Build;
+import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
+import android.widget.Toast;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -15,7 +21,14 @@ import java.io.Serializable;
  */
 
 public class FileCacheUtil {
-    public static boolean save(String path, Serializable object) {
+    public static boolean save(Context context, String path, Serializable object) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+            int result = ContextCompat.checkSelfPermission(context, Manifest.permission.READ_EXTERNAL_STORAGE);
+            if (result != PackageManager.PERMISSION_GRANTED) {
+                ToastUtil.show(context, "已经拒绝访问文件，无法打开文件，请重新授权", Toast.LENGTH_SHORT);
+                return false;
+            }
+        }
         if (TextUtils.isEmpty(path)) return false;
         File file = new File(path);
         File parent;
@@ -53,7 +66,14 @@ public class FileCacheUtil {
     }
 
     @SuppressWarnings("unchecked")
-    public static <T extends Serializable> T load(String path) {
+    public static <T extends Serializable> T load(Context context, String path) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+            int result = ContextCompat.checkSelfPermission(context, Manifest.permission.READ_EXTERNAL_STORAGE);
+            if (result != PackageManager.PERMISSION_GRANTED) {
+                ToastUtil.show(context, "已经拒绝访问文件，无法打开文件，请重新授权", Toast.LENGTH_SHORT);
+                return null;
+            }
+        }
         if (TextUtils.isEmpty(path)) return null;
         File file = new File(path);
         if (!file.exists()) return null;

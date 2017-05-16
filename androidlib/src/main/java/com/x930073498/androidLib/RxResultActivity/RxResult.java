@@ -23,7 +23,7 @@ public class RxResult<T> {
 
     private Class<T> result;
 
-    private Bundle bundle;
+    private Bundle bundle=new Bundle();
 
     private int requestCode = -1;
     private String key;
@@ -44,6 +44,7 @@ public class RxResult<T> {
     }
 
     public RxResult<T> bundle(Bundle bundle) {
+        if (bundle==null)bundle=new Bundle();
         this.bundle = bundle;
         return this;
     }
@@ -83,6 +84,8 @@ public class RxResult<T> {
         }
 
         final ResultHandleFragment<T> finalFragment = fragment;
+
+
         return finalFragment.getAttachSubject().filter(aBoolean -> aBoolean).flatMap(new Function<Boolean, ObservableSource<T>>() {
             @Override
             public ObservableSource<T> apply(@NonNull Boolean aBoolean)

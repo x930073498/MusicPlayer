@@ -1,6 +1,7 @@
 package com.x930073498.androidLib.RxResultActivity;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -24,6 +25,7 @@ public class RxResultN<T> {
 
     private int requestCode = -1;
     private String key;
+    private Bundle bundle = new Bundle();
 
     private RxResultN(Class<T> result) {
         this.result = result;
@@ -37,6 +39,12 @@ public class RxResultN<T> {
 
     public RxResultN<T> key(String key) {
         this.key = key;
+        return this;
+    }
+
+    public RxResultN<T> bundle(Bundle bundle) {
+        if (bundle == null) bundle = new Bundle();
+        this.bundle = bundle;
         return this;
     }
 
@@ -64,7 +72,7 @@ public class RxResultN<T> {
                 ResultHandleFragmentN.class.getSimpleName().concat(String.valueOf(requestCode)));
 
         if (fragment == null) {
-            fragment = ResultHandleFragmentN.newInstance(result, key, requestCode);
+            fragment = ResultHandleFragmentN.newInstance( key, requestCode);
             fragmentManager.beginTransaction()
                     .add(fragment, fragment.getClass().getSimpleName().concat(String.valueOf(requestCode)))
                     .commit();
@@ -80,6 +88,7 @@ public class RxResultN<T> {
             public ObservableSource<T> apply(@NonNull Boolean aBoolean)
                     throws Exception {
                 Intent intent = new Intent(finalFragment.getActivity(), target);
+                intent.putExtras(bundle);
                 finalFragment.startActivityForResult(intent, requestCode == -1 ? ResultHandleFragmentN.REQUEST_CODE : requestCode);
                 return finalFragment.getResultSubject();
             }

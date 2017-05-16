@@ -9,6 +9,8 @@ import android.support.v4.app.Fragment;
 
 import com.trello.rxlifecycle2.components.support.RxFragment;
 
+import java.io.Serializable;
+
 import io.reactivex.subjects.BehaviorSubject;
 import io.reactivex.subjects.PublishSubject;
 
@@ -24,7 +26,7 @@ public class ResultHandleFragmentN<T> extends RxFragment {
 
     private String key;
 
-    public static <T> ResultHandleFragmentN<T> newInstance(Class<T> result, String key, int requestCode) {
+    public static <T> ResultHandleFragmentN<T> newInstance(String key, int requestCode) {
 
         ResultHandleFragmentN<T> fragment = new ResultHandleFragmentN<>();
         fragment.key = key;
@@ -49,6 +51,7 @@ public class ResultHandleFragmentN<T> extends RxFragment {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == this.requestCode) {
+            if (getResult(data)==null)return;
             resultSubject.onNext(getResult(data));
         }
     }
@@ -72,6 +75,11 @@ public class ResultHandleFragmentN<T> extends RxFragment {
     @SuppressWarnings("unchecked")
     private T getResult(Intent data) {
         if (data == null) return null;
-        return (T) data.getSerializableExtra(key);
+        Serializable temp=data.getSerializableExtra(key);
+        try {
+            return (T)temp;
+        }catch (Exception e){
+            return null;
+        }
     }
 }

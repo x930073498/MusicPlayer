@@ -5,13 +5,11 @@ import android.databinding.Bindable;
 
 import com.x930073498.appcore.BR;
 
-import javax.inject.Inject;
-
 /**
  * Created by x930073498 on 17-5-3.
  */
 
-public class IVM<V extends IVeiw, M extends IData> extends BaseObservable {
+public class IVM<V extends IView, M extends IData> extends BaseObservable {
     protected V view;
     protected M data;
 
@@ -46,5 +44,13 @@ public class IVM<V extends IVeiw, M extends IData> extends BaseObservable {
     public void setView(V view) {
         this.view = view;
         notifyPropertyChanged(BR.view);
+    }
+
+    public void onCreate() {
+
+    }
+
+    public void onDestroy() {
+
     }
 }

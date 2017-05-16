@@ -28,10 +28,16 @@ public class SecondActivity extends BaseActivity<ActivitySecondBinding, SecondVi
     }
 
     @Override
+    public void onBackPressed() {
+        setResultAndFinish();
+    }
+
+    @Override
     public void setResultAndFinish() {
-        Intent intent = new Intent();
-        intent.putExtra("data", "test");
-        setResult(1000, intent);
-        finish();
+//        Intent intent = new Intent();
+//        intent.putExtra("data", "test");
+//        setResult(1000, intent);
+//        finish();
+        startActivity(new Intent(this, SongSearchActivity.class));
     }
 }

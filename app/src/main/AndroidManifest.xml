@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.x930073498.musicplayer">
+    package="com.x930073498.MusicPlayer">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
     <application
         android:name="com.x930073498.MusicPlayer.App"
         android:allowBackup="true"
@@ -18,6 +19,8 @@
             </intent-filter>
         </activity>
         <activity android:name="com.x930073498.MusicPlayer.screen.activity.SecondActivity" />
+        <activity android:name="com.x930073498.MusicPlayer.screen.activity.SongSearchActivity" />
     </application>
+
 
 </manifest>

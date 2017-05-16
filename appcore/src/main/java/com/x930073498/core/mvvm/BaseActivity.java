@@ -37,6 +37,7 @@ public abstract class BaseActivity<DATA_BINDING extends ViewDataBinding, VM exte
         if (useAndroidInject())
             AndroidInjection.inject(this);
         super.onCreate(savedInstanceState);
+        if (ViewModel != null) ViewModel.onCreate();
         RxBus.get().register(this);
     }
 
@@ -73,6 +74,7 @@ public abstract class BaseActivity<DATA_BINDING extends ViewDataBinding, VM exte
     protected void onDestroy() {
         super.onDestroy();
         RxBus.get().unregister(this);
+        if (ViewModel != null) ViewModel.onDestroy();
     }
 
     protected void toast(String msg, int duration) {

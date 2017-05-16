@@ -49,6 +49,7 @@ public class ResultHandleFragment<T> extends RxFragment {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == this.requestCode) {
+            if (getResult(data)==null)return;
             resultSubject.onNext(getResult(data));
         }
     }

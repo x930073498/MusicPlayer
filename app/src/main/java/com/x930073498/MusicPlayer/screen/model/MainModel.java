@@ -2,8 +2,8 @@ package com.x930073498.MusicPlayer.screen.model;
 
 import android.databinding.Bindable;
 
+import com.x930073498.MusicPlayer.BR;
 import com.x930073498.core.mvvm.IData;
-import com.x930073498.musicplayer.BR;
 
 /**
  * Created by x930073498 on 17-5-4.

@@ -4,8 +4,8 @@ import android.databinding.Bindable;
 import android.databinding.ObservableArrayList;
 
 import com.alibaba.fastjson.annotation.JSONField;
+import com.x930073498.MusicPlayer.BR;
 import com.x930073498.core.mvvm.IData;
-import com.x930073498.musicplayer.BR;
 
 /**
  * Created by x930073498 on 17-5-16.
@@ -13,18 +13,18 @@ import com.x930073498.musicplayer.BR;
 
 public class SearchSongResult extends IData {
     @JSONField(name = "xiami")
-    private XiamiSongSummary sourceFromXiami;
+    private XiamiSource sourceFromXiami;
     @JSONField(name = "qq")
     private OtherSource sourceFromQQ;
     @JSONField(name = "netease")
     private OtherSource sourceFromNetease;
 
     @Bindable
-    public XiamiSongSummary getSourceFromXiami() {
+    public XiamiSource getSourceFromXiami() {
         return sourceFromXiami;
     }
 
-    public void setSourceFromXiami(XiamiSongSummary sourceFromXiami) {
+    public void setSourceFromXiami(XiamiSource sourceFromXiami) {
         this.sourceFromXiami = sourceFromXiami;
         notifyPropertyChanged(BR.sourceFromXiami);
     }

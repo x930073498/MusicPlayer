@@ -19,7 +19,7 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
     defaultConfig {
-        applicationId "com.x930073498.musicplayer"
+        applicationId "com.x930073498.MusicPlayer"
         minSdkVersion 15
         targetSdkVersion 25
         versionCode 1

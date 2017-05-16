@@ -27,4 +27,8 @@ public interface SongSourceApi {
 
     @GET("search/song/{vendor}")
     Observable<SearchSongResult> getResult(@VendorDef @Path("vendor") String vendor, @Query("key") String key);
+    @GET("search/song/{vendor}")
+    Observable<SearchSongResult.XiamiSource> getXiamiResult(@VendorDef @Path("vendor") String vendor, @Query("key") String key);
+    @GET("search/song/{vendor}")
+    Observable<SearchSongResult.OtherSource> getOtherSingleResult(@VendorDef @Path("vendor") String vendor, @Query("key") String key);
 }

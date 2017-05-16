@@ -19,11 +19,11 @@
             android:orientation="horizontal">
 
             <LinearLayout
-                android:onClick="@{(v)->VM}"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:layout_weight="1"
+                android:onClick="@{(v)->VM.showChooseDialog()}"
                 android:orientation="horizontal">
 
                 <TextView
@@ -34,7 +34,7 @@
                     android:text="搜索范围："
                     android:textColor="@color/colorAccent" />
 
-                <EditText
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingBottom="10dp"

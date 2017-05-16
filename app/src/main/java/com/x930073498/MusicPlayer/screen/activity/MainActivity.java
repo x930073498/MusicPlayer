@@ -3,12 +3,12 @@ package com.x930073498.MusicPlayer.screen.activity;
 import android.os.Bundle;
 
 import com.trello.rxlifecycle2.android.ActivityEvent;
+import com.x930073498.MusicPlayer.R;
+import com.x930073498.MusicPlayer.databinding.ActivityMainBinding;
 import com.x930073498.MusicPlayer.screen.view.MainView;
 import com.x930073498.MusicPlayer.screen.viewModel.MainViewModel;
 import com.x930073498.androidLib.RxResultActivity.RxResult;
 import com.x930073498.core.mvvm.BaseActivity;
-import com.x930073498.musicplayer.R;
-import com.x930073498.musicplayer.databinding.ActivityMainBinding;
 
 import javax.inject.Inject;
 

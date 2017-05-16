@@ -46,11 +46,8 @@ public class IVM<V extends IView, M extends IData> extends BaseObservable {
         notifyPropertyChanged(BR.view);
     }
 
-    public void onCreate() {
+    public void onCreate(){
 
     }
-
-    public void onDestroy() {
-
-    }
+    public void onDestroy(){}
 }

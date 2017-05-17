@@ -12,7 +12,6 @@ import com.x930073498.MusicPlayer.screen.model.SearchSongResult;
 import com.x930073498.MusicPlayer.screen.view.SongSearchView;
 import com.x930073498.core.mvvm.IVM;
 
-import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 import retrofit2.Retrofit;

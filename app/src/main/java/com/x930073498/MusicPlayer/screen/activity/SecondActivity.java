@@ -10,6 +10,8 @@ import com.x930073498.MusicPlayer.screen.view.SecondView;
 import com.x930073498.MusicPlayer.screen.viewModel.SecondViewModel;
 import com.x930073498.core.mvvm.BaseActivity;
 
+import java.util.ArrayList;
+
 /**
  * Created by x930073498 on 17-5-5.
  */
@@ -34,15 +36,19 @@ public class SecondActivity extends BaseActivity<ActivitySecondBinding, SecondVi
 
     @Override
     public void setResultAndFinish() {
+        ArrayList<String> data=new ArrayList<>();
+        data.add("t");
+        data.add("e");
+        data.add("s");
+        data.add("t");
         Intent intent = new Intent();
-        intent.putExtra("data", "test");
+        intent.putExtra("data", data);
         setResult(1000, intent);
         finish();
-
     }
 
     @Override
     public void startNextActivity() {
-        startActivity(new Intent(this, SongSearchActivity.class));
+        startActivity(new Intent(this, SongSearchActivity.class).putExtra("key", "叶里"));
     }
 }

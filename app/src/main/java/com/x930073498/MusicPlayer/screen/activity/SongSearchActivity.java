@@ -36,7 +36,7 @@ public class SongSearchActivity extends BaseActivity<ActivitySongSearchBinding, 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_song_search);
         dataBinding.setVM(ViewModel);
-        ViewModel.setRetrofit(retrofit);
+        ViewModel.loadData(retrofit);
     }
 
     @Override

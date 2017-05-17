@@ -5,6 +5,7 @@ import android.content.Context;
 
 import com.x930073498.MusicPlayer.App;
 
+import javax.inject.Inject;
 import javax.inject.Singleton;
 
 import dagger.Module;
@@ -15,31 +16,31 @@ import dagger.Provides;
  */
 @Module
 public class ApplicationModule {
-  private App application;
+    App app;
 
-  public ApplicationModule(App application) {
-    this.application = application;
-  }
+    public ApplicationModule(App app) {
+        this.app = app;
+    }
 
-  @ForApplication
-  @Provides
-  @Singleton
-  public Application provideApplication() {
-    return application;
-  }
+    @ForApplication
+    @Provides
+    @Singleton
+    public Application provideApplication(App app) {
+        return app;
+    }
 
-  @ForApplication
-  @Provides
-  @Singleton
-  public App provideApp() {
-    return application;
-  }
+    @ForApplication
+    @Provides
+    @Singleton
+    public App provideApp() {
+        return app;
+    }
 
-  @ForApplication
-  @Provides
-  @Singleton
-  public Context provideContext() {
-    return application.getApplicationContext();
-  }
+    @ForApplication
+    @Provides
+    @Singleton
+    public Context provideContext(Application application) {
+        return application;
+    }
 
 }

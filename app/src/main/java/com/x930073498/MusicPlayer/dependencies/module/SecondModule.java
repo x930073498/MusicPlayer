@@ -19,12 +19,12 @@ public class SecondModule {
     }
 
     @Provides
-    SecondModel secondModel(SecondActivity activity){
+    SecondModel secondModel(){
         return new SecondModel();
     }
     @Provides
-    SecondViewModel secondViewModel(SecondActivity activity){
-        SecondViewModel secondViewModel=new SecondViewModel(secondView(activity),secondModel(activity));
+    SecondViewModel secondViewModel(SecondActivity activity,SecondModel model){
+        SecondViewModel secondViewModel=new SecondViewModel(activity,model,activity);
         return secondViewModel;
     }
 }

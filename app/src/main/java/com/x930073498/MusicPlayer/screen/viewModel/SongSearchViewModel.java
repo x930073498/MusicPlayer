@@ -6,6 +6,8 @@ import android.text.TextUtils;
 import com.hwangjr.rxbus.RxBus;
 import com.hwangjr.rxbus.annotation.Subscribe;
 import com.hwangjr.rxbus.annotation.Tag;
+import com.trello.rxlifecycle2.LifecycleProvider;
+import com.trello.rxlifecycle2.android.ActivityEvent;
 import com.x930073498.MusicPlayer.BR;
 import com.x930073498.MusicPlayer.http.api.SongSourceApi;
 import com.x930073498.MusicPlayer.screen.model.SearchSongResult;
@@ -52,45 +54,41 @@ public class SongSearchViewModel extends IVM<SongSearchView, SearchSongResult> {
         notifyPropertyChanged(BR.key);
     }
 
-    public Retrofit getRetrofit() {
-        return retrofit;
-    }
 
-    public void setRetrofit(Retrofit retrofit) {
-        this.retrofit = retrofit;
-    }
 
-    public SongSearchViewModel(SongSearchView view, SearchSongResult data) {
-        super(view, data);
-    }
-
-    public SongSearchViewModel(SongSearchView view) {
-        super(view);
-    }
-
-    public SongSearchViewModel() {
+    public SongSearchViewModel(SongSearchView view, SearchSongResult data, LifecycleProvider<ActivityEvent> lifecycleProvider) {
+        super(view, data, lifecycleProvider);
     }
 
     public void showChooseDialog() {
         view.showChooseDialog();
     }
 
+    @Override
+    protected boolean useRxBus() {
+        return true;
+    }
 
     public void loadData() {
+        loadData(retrofit);
+    }
+
+    public void loadData(Retrofit retrofit) {
+        if (this.retrofit == null) this.retrofit = retrofit;
         if (TextUtils.isEmpty(from)) setFrom(SongSourceApi.FROM_ALL);
         if (TextUtils.isEmpty(key)) setKey("长歌名行不行");
         view.showProgress("正在获取数据");
         SongSourceApi songSourceApi = retrofit.create(SongSourceApi.class);
         switch (from) {
             case SongSourceApi.FROM_ALL:
-                songSourceApi.getResult(from, key).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(searchSongResult -> {
+                songSourceApi.getResult(from, key).subscribeOn(Schedulers.io()).compose(lifecycleProvider.bindToLifecycle()).observeOn(AndroidSchedulers.mainThread()).subscribe(searchSongResult -> {
                     setData(searchSongResult);
                     view.dismissProgress();
                 });
                 break;
             case SongSourceApi.FROM_XIAMI:
 
-                songSourceApi.getXiamiResult(from, key).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(searchSongResult -> {
+                songSourceApi.getXiamiResult(from, key).compose(lifecycleProvider.bindToLifecycle()).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(searchSongResult -> {
                     SearchSongResult result = new SearchSongResult();
                     result.setSourceFromXiami(searchSongResult);
                     setData(result);
@@ -98,7 +96,7 @@ public class SongSearchViewModel extends IVM<SongSearchView, SearchSongResult> {
                 });
                 break;
             case SongSourceApi.FROM_QQ:
-                songSourceApi.getOtherSingleResult(from, key).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(searchSongResult -> {
+                songSourceApi.getOtherSingleResult(from, key).compose(lifecycleProvider.bindToLifecycle()).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(searchSongResult -> {
                     SearchSongResult result = new SearchSongResult();
                     result.setSourceFromQQ(searchSongResult);
                     setData(result);
@@ -106,7 +104,7 @@ public class SongSearchViewModel extends IVM<SongSearchView, SearchSongResult> {
                 });
                 break;
             case SongSourceApi.FROM_NETEASE:
-                songSourceApi.getOtherSingleResult(from, key).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(searchSongResult -> {
+                songSourceApi.getOtherSingleResult(from, key).compose(lifecycleProvider.bindToLifecycle()).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(searchSongResult -> {
                     SearchSongResult result = new SearchSongResult();
                     result.setSourceFromNetease(searchSongResult);
                     setData(result);
@@ -117,15 +115,4 @@ public class SongSearchViewModel extends IVM<SongSearchView, SearchSongResult> {
 
     }
 
-    @Override
-    public void onCreate() {
-        super.onCreate();
-        RxBus.get().register(this);
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        RxBus.get().unregister(this);
-    }
 }

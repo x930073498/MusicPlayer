@@ -1,8 +1,14 @@
 package com.x930073498.core.mvvm;
 
+import android.app.Application;
 import android.databinding.BaseObservable;
 import android.databinding.Bindable;
+import android.support.annotation.CallSuper;
+import android.support.annotation.NonNull;
 
+import com.hwangjr.rxbus.RxBus;
+import com.trello.rxlifecycle2.LifecycleProvider;
+import com.trello.rxlifecycle2.android.ActivityEvent;
 import com.x930073498.appcore.BR;
 
 /**
@@ -12,19 +18,20 @@ import com.x930073498.appcore.BR;
 public class IVM<V extends IView, M extends IData> extends BaseObservable {
     protected V view;
     protected M data;
+    protected LifecycleProvider<ActivityEvent> lifecycleProvider;
 
-    public IVM(V view, M data) {
+
+    public IVM(V view, M data, @NonNull LifecycleProvider<ActivityEvent> lifecycleProvider) {
         this.view = view;
         this.data = data;
+        this.lifecycleProvider = lifecycleProvider;
+        if (useRxBus()) RxBus.get().register(this);
     }
 
-    public IVM(V view) {
-        this.view = view;
+    protected boolean useRxBus() {
+        return false;
     }
 
-    public IVM() {
-
-    }
 
     public void setData(M data) {
         this.data = data;
@@ -46,8 +53,8 @@ public class IVM<V extends IView, M extends IData> extends BaseObservable {
         notifyPropertyChanged(BR.view);
     }
 
-    public void onCreate(){
-
+    public void destroy() {
+        RxBus.get().unregister(this);
     }
-    public void onDestroy(){}
+
 }

@@ -1,16 +1,13 @@
 package com.x930073498.MusicPlayer.dependencies.module;
 
 import android.app.ProgressDialog;
-import android.util.Log;
+import android.content.Intent;
 
-import com.x930073498.MusicPlayer.screen.activity.SecondActivity;
 import com.x930073498.MusicPlayer.screen.activity.SongSearchActivity;
 import com.x930073498.MusicPlayer.screen.model.SearchSongResult;
-import com.x930073498.MusicPlayer.screen.model.SecondModel;
-import com.x930073498.MusicPlayer.screen.view.SecondView;
 import com.x930073498.MusicPlayer.screen.view.SongSearchView;
-import com.x930073498.MusicPlayer.screen.viewModel.SecondViewModel;
 import com.x930073498.MusicPlayer.screen.viewModel.SongSearchViewModel;
+import com.x930073498.androidLib.Log.Log;
 
 import javax.inject.Inject;
 
@@ -29,23 +26,24 @@ public class SongSearchModule {
     }
 
     @Provides
-    SearchSongResult searchSongResult(SongSearchActivity activity) {
+    SearchSongResult searchSongResult() {
         return new SearchSongResult();
     }
 
     @Provides
-    SongSearchViewModel songSearchViewModel(SongSearchActivity activity) {
-        SongSearchViewModel model = new SongSearchViewModel();
-        model.setData(searchSongResult(activity));
-        model.setView(activity);
+    SongSearchViewModel songSearchViewModel(SongSearchActivity activity, SearchSongResult result) {
+        SongSearchViewModel model = new SongSearchViewModel(activity, result, activity);
+        Intent intent=activity.getIntent();
+        String key=intent.getStringExtra("key");
+        model.setKey(key);
         return model;
     }
 
     @Provides
     ProgressDialog progressDialog(SongSearchActivity activity) {
+
         return new ProgressDialog(activity);
     }
-
 
 
 }

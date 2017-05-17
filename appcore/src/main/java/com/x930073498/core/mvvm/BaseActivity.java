@@ -4,6 +4,7 @@ import android.content.Context;
 import android.databinding.DataBindingUtil;
 import android.databinding.ViewDataBinding;
 import android.os.Bundle;
+import android.support.annotation.CallSuper;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -14,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.hwangjr.rxbus.RxBus;
+import com.trello.rxlifecycle2.LifecycleTransformer;
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
 import com.x930073498.androidLib.utils.ToastUtil;
 
@@ -32,64 +34,68 @@ public abstract class BaseActivity<DATA_BINDING extends ViewDataBinding, VM exte
     @Inject
     protected VM ViewModel;
 
+    @CallSuper
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         if (useAndroidInject())
             AndroidInjection.inject(this);
         super.onCreate(savedInstanceState);
-        if (ViewModel != null) ViewModel.onCreate();
         RxBus.get().register(this);
+
     }
 
-    protected Context getContext() {
+    @Override
+    protected void onPostCreate(@Nullable Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+    }
+
+    protected final Context getContext() {
         return this;
     }
 
     @Override
-    public void setContentView(@LayoutRes int layoutResID) {
-        View contentView = LayoutInflater.from(this).inflate(layoutResID, null, false);
-        dataBinding = DataBindingUtil.bind(contentView);
-        setContentView(contentView);
-        if (ViewModel == null) Log.d("xj", "view_model is null");
-
-    }
-
-    @Override
-    public void setContentView(View view) {
+    public final void setContentView(@LayoutRes int layoutResID) {
+        View view = LayoutInflater.from(this).inflate(layoutResID, null, false);
+        dataBinding = DataBindingUtil.bind(view);
         super.setContentView(view);
-        if (dataBinding == null) dataBinding = DataBindingUtil.bind(view);
     }
 
     @Override
-    public void setContentView(View view, ViewGroup.LayoutParams params) {
+    public final void setContentView(View view) {
+        super.setContentView(view);
+        dataBinding = DataBindingUtil.bind(view);
+    }
+
+    @Override
+    public final void setContentView(View view, ViewGroup.LayoutParams params) {
         super.setContentView(view, params);
-        if (dataBinding == null) dataBinding = DataBindingUtil.bind(view);
+        dataBinding = DataBindingUtil.bind(view);
     }
 
     protected boolean useAndroidInject() {
         return false;
     }
 
+    @CallSuper
     @Override
     protected void onDestroy() {
         super.onDestroy();
         RxBus.get().unregister(this);
-        if (ViewModel != null) ViewModel.onDestroy();
     }
 
-    protected void toast(String msg, int duration) {
+    protected final void toast(String msg, int duration) {
         ToastUtil.show(this, msg, duration);
     }
 
-    protected void toast(String msg) {
+    protected final void toast(String msg) {
         toast(msg, Toast.LENGTH_SHORT);
     }
 
-    protected void toast(int resId, int duration) {
+    protected final void toast(int resId, int duration) {
         ToastUtil.show(this, resId, duration);
     }
 
-    protected void toast(int resId) {
+    protected final void toast(int resId) {
         toast(resId, Toast.LENGTH_SHORT);
     }
 }

@@ -39,13 +39,6 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
 
     @Override
     public void handStartActivity() {
-//        RxResultN.of(String.class)
-//                .activity(SecondActivity.class)
-//                .requestCode(1000)
-//                .key("data")
-//                .start(this)
-//                .compose(this.bindUntilEvent(ActivityEvent.DESTROY))
-//                .subscribe(this::toast);
         RxResult
                 .of(String.class)
                 .activity(SecondActivity.class)

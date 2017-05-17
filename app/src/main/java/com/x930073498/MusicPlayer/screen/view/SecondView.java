@@ -9,4 +9,5 @@ import com.x930073498.core.mvvm.IView;
 public interface SecondView extends IView {
 
     void setResultAndFinish();
+    void startNextActivity();
 }

@@ -24,4 +24,8 @@ public class SecondViewModel extends IVM<SecondView, SecondModel> {
     public void setResult() {
         view.setResultAndFinish();
     }
+
+    public void startActivityNext() {
+        view.startNextActivity();
+    }
 }

@@ -15,11 +15,10 @@ import com.x930073498.MusicPlayer.screen.viewModel.SongSearchViewModel;
 import com.x930073498.core.mvvm.BaseActivity;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 
 import javax.inject.Inject;
 
+import io.reactivex.Flowable;
 import retrofit2.Retrofit;
 
 /**
@@ -29,14 +28,13 @@ import retrofit2.Retrofit;
 public class SongSearchActivity extends BaseActivity<ActivitySongSearchBinding, SongSearchViewModel> implements SongSearchView {
     @Inject
     Retrofit retrofit;
-
-    private ProgressDialog dialog;
+    @Inject
+    ProgressDialog dialog;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_song_search);
-        dialog = new ProgressDialog(this);
         dataBinding.setVM(ViewModel);
         ViewModel.setRetrofit(retrofit);
     }
@@ -69,12 +67,10 @@ public class SongSearchActivity extends BaseActivity<ActivitySongSearchBinding, 
                 "虾米音乐",
                 "QQ音乐",
                 "网易云音乐",
-
         };
         builder.setItems(strings, (dialog1, which) -> {
             dialog1.dismiss();
             RxBus.get().post("setFrom", items.get(which));
-
         });
         builder.show();
     }

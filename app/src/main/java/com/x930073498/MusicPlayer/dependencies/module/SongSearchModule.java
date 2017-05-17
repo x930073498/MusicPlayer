@@ -1,5 +1,6 @@
 package com.x930073498.MusicPlayer.dependencies.module;
 
+import android.app.ProgressDialog;
 import android.util.Log;
 
 import com.x930073498.MusicPlayer.screen.activity.SecondActivity;
@@ -39,6 +40,12 @@ public class SongSearchModule {
         model.setView(activity);
         return model;
     }
+
+    @Provides
+    ProgressDialog progressDialog(SongSearchActivity activity) {
+        return new ProgressDialog(activity);
+    }
+
 
 
 }

@@ -20,6 +20,7 @@ public class App extends DaggerApplication {
     @Override
     public void onCreate() {
         super.onCreate();
+        new Test().onCreate();
     }
 
     @Override
@@ -29,6 +30,7 @@ public class App extends DaggerApplication {
                 .apiModule(new ApiModule(this, "http://120.77.80.82:3389/"))
                 .applicationModule(new ApplicationModule(this))
                 .build();
+
     }
 
 

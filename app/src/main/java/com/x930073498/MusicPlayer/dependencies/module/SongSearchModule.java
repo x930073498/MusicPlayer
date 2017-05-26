@@ -7,9 +7,6 @@ import com.x930073498.MusicPlayer.screen.activity.SongSearchActivity;
 import com.x930073498.MusicPlayer.screen.model.SearchSongResult;
 import com.x930073498.MusicPlayer.screen.view.SongSearchView;
 import com.x930073498.MusicPlayer.screen.viewModel.SongSearchViewModel;
-import com.x930073498.androidLib.Log.Log;
-
-import javax.inject.Inject;
 
 import dagger.Module;
 import dagger.Provides;

@@ -5,7 +5,7 @@ import android.databinding.ObservableArrayList;
 
 import com.alibaba.fastjson.annotation.JSONField;
 import com.x930073498.MusicPlayer.BR;
-import com.x930073498.core.mvvm.IData;
+import com.x930073498.MusicPlayer.core.mvvm.IData;
 
 /**
  * Created by x930073498 on 17-5-16.

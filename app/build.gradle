@@ -1,6 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'me.tatarka.retrolambda'
-apply plugin: 'kotlin-android'
+//apply plugin: 'kotlin-android'
 
 android {
     compileSdkVersion 25
@@ -15,10 +15,10 @@ android {
         exclude 'META-INF/LICENSE.txt'
         exclude 'META-INF/NOTICE.txt'
     }
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
+//    compileOptions {
+//        sourceCompatibility JavaVersion.VERSION_1_8
+//        targetCompatibility JavaVersion.VERSION_1_8
+//    }
     defaultConfig {
         applicationId "com.x930073498.MusicPlayer"
         minSdkVersion 15
@@ -55,8 +55,6 @@ allprojects {
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile project(':appcore')
-//    compile 'net.alhazmy13.MediaPicker:rxjava:+'
-//
     testCompile 'junit:junit:4.12'
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'

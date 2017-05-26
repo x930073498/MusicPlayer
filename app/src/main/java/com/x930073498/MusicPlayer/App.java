@@ -20,7 +20,6 @@ public class App extends DaggerApplication {
     @Override
     public void onCreate() {
         super.onCreate();
-        new Test().onCreate();
     }
 
     @Override

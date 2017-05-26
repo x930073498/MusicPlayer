@@ -6,7 +6,7 @@ import com.trello.rxlifecycle2.LifecycleProvider;
 import com.trello.rxlifecycle2.android.ActivityEvent;
 import com.x930073498.MusicPlayer.screen.model.SecondModel;
 import com.x930073498.MusicPlayer.screen.view.SecondView;
-import com.x930073498.core.mvvm.IVM;
+import com.x930073498.MusicPlayer.core.mvvm.IVM;
 
 /**
  * Created by x930073498 on 17-5-5.

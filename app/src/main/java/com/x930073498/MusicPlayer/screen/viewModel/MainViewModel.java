@@ -1,18 +1,13 @@
 package com.x930073498.MusicPlayer.screen.viewModel;
 
 import android.support.annotation.NonNull;
-import android.util.Log;
 
 import com.trello.rxlifecycle2.LifecycleProvider;
 import com.trello.rxlifecycle2.android.ActivityEvent;
 import com.x930073498.MusicPlayer.R;
 import com.x930073498.MusicPlayer.screen.model.MainModel;
 import com.x930073498.MusicPlayer.screen.view.MainView;
-import com.x930073498.core.mvvm.IVM;
-
-import javax.inject.Inject;
-
-import retrofit2.Retrofit;
+import com.x930073498.MusicPlayer.core.mvvm.IVM;
 
 
 /**

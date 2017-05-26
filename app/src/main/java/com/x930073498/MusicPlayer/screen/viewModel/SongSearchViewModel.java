@@ -3,7 +3,6 @@ package com.x930073498.MusicPlayer.screen.viewModel;
 import android.databinding.Bindable;
 import android.text.TextUtils;
 
-import com.hwangjr.rxbus.RxBus;
 import com.hwangjr.rxbus.annotation.Subscribe;
 import com.hwangjr.rxbus.annotation.Tag;
 import com.trello.rxlifecycle2.LifecycleProvider;
@@ -12,7 +11,7 @@ import com.x930073498.MusicPlayer.BR;
 import com.x930073498.MusicPlayer.http.api.SongSourceApi;
 import com.x930073498.MusicPlayer.screen.model.SearchSongResult;
 import com.x930073498.MusicPlayer.screen.view.SongSearchView;
-import com.x930073498.core.mvvm.IVM;
+import com.x930073498.MusicPlayer.core.mvvm.IVM;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;

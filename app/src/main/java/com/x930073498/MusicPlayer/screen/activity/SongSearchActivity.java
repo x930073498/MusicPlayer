@@ -1,7 +1,6 @@
 package com.x930073498.MusicPlayer.screen.activity;
 
 import android.app.ProgressDialog;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
@@ -12,13 +11,12 @@ import com.x930073498.MusicPlayer.databinding.ActivitySongSearchBinding;
 import com.x930073498.MusicPlayer.http.api.SongSourceApi;
 import com.x930073498.MusicPlayer.screen.view.SongSearchView;
 import com.x930073498.MusicPlayer.screen.viewModel.SongSearchViewModel;
-import com.x930073498.core.mvvm.BaseActivity;
+import com.x930073498.MusicPlayer.core.mvvm.BaseActivity;
 
 import java.util.ArrayList;
 
 import javax.inject.Inject;
 
-import io.reactivex.Flowable;
 import retrofit2.Retrofit;
 
 /**

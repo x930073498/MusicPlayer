@@ -1,6 +1,5 @@
 package com.x930073498.MusicPlayer.screen.activity;
 
-import android.app.Application;
 import android.os.Bundle;
 
 import com.trello.rxlifecycle2.android.ActivityEvent;
@@ -8,22 +7,15 @@ import com.x930073498.MusicPlayer.R;
 import com.x930073498.MusicPlayer.databinding.ActivityMainBinding;
 import com.x930073498.MusicPlayer.screen.view.MainView;
 import com.x930073498.MusicPlayer.screen.viewModel.MainViewModel;
-import com.x930073498.androidLib.Log.Log;
-import com.x930073498.androidLib.RxResultActivity.RxResult;
-import com.x930073498.core.mvvm.BaseActivity;
+import com.x930073498.MusicPlayer.androidLib.RxResultActivity.RxResult;
+import com.x930073498.MusicPlayer.core.mvvm.BaseActivity;
 
 import java.util.ArrayList;
-import java.util.concurrent.TimeUnit;
 
-import javax.inject.Inject;
-
-import io.reactivex.Flowable;
 import io.reactivex.Observable;
 import io.reactivex.ObservableSource;
 import io.reactivex.annotations.NonNull;
-import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
-import io.reactivex.subjects.PublishSubject;
 
 
 public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewModel> implements MainView {

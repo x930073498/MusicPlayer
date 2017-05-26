@@ -1,6 +1,6 @@
 apply plugin: 'com.android.library'
 apply plugin: 'me.tatarka.retrolambda'
-//apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android'
 
 android {
     compileSdkVersion 25
@@ -8,10 +8,10 @@ android {
     dataBinding {
         enabled = true
     }
-//    compileOptions {
-//        sourceCompatibility JavaVersion.VERSION_1_8
-//        targetCompatibility JavaVersion.VERSION_1_8
-//    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
     defaultConfig {
         minSdkVersion 15
         targetSdkVersion 25

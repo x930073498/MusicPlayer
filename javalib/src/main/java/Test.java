@@ -1,3 +1,5 @@
+import com.A;
+
 import org.reactivestreams.Publisher;
 import org.reactivestreams.Subscriber;
 
@@ -17,6 +19,7 @@ import io.reactivex.functions.Consumer;
 
 public class Test {
     public static void main(String... arg0) {
+        new A().print().invoke();
 //        Observable.create((ObservableOnSubscribe<Integer>) observer -> {
 //            try {
 //                if (!observer.isDisposed()) {
@@ -46,10 +49,10 @@ public class Test {
 //            }
 //        }).subscribe(System.out::println, e -> System.out.println("this is onError"), () -> System.out.println("onComplete"));
 
-        Integer[] items = {0, 1, 2, 3, 4, 5};
-        Observable.fromArray(items).subscribe(System.out::println, Throwable::printStackTrace, () -> System.out.print("onComplete"));
-        Observable.timer(2, TimeUnit.SECONDS).subscribe(System.out::println);
+//        Integer[] items = {0, 1, 2, 3, 4, 5};
+//        Observable.fromArray(items).subscribe(System.out::println, Throwable::printStackTrace, () -> System.out.print("onComplete"));
+//        Observable.timer(2, TimeUnit.SECONDS).subscribe(System.out::println);
 //        Observable.just(items,items,items).blockingIterable().forEach((integers) -> Observable.fromArray(integers).subscribe(System.out::println));
-        Observable.just(items, items, items).blockingSubscribe(integers -> Flowable.fromArray(integers).subscribe(System.out::println));
+//        Observable.just(items, items, items).blockingSubscribe(integers -> Flowable.fromArray(integers).subscribe(System.out::println));
     }
 }

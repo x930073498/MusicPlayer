@@ -2,7 +2,6 @@ package com.x930073498.MusicPlayer.androidLib.PhotoGallery.screen.show;
 
 import android.view.View;
 
-import com.x930073498.MusicPlayer.androidLib.PhotoGallery.screen.interfaces.ProgressCreator;
 import com.x930073498.MusicPlayer.androidLib.PhotoGallery.screen.interfaces.ShowContentCreator;
 import com.x930073498.MusicPlayer.androidLib.PhotoGallery.screen.interfaces.ViewCreator;
 import com.x930073498.MusicPlayer.androidLib.PhotoGallery.screen.manager.RxGalleryManager;
@@ -17,17 +16,17 @@ public class RxUIShowGallery<P extends PhotoItem,V extends View> extends ShowSta
 
     }
 
-    public <T extends ViewCreator> RxUIShowGallery<P,V> floatOver(T creator) {
+    public <R extends View,T extends ViewCreator<P,R,R>> RxUIShowGallery<P,V> floatOver(T creator) {
         RxGalleryManager.getInstance().getUi().setFloatView(creator);
         return this;
     }
 
-    public <T extends ViewCreator> RxUIShowGallery<P,V> action(T creator) {
+    public <R extends View,T extends ViewCreator<P,R,R>> RxUIShowGallery<P,V> action(T creator) {
         RxGalleryManager.getInstance().getUi().setActionView(creator);
         return this;
     }
 
-    public RxUIShowGallery<P,V> progress(ProgressCreator creator) {
+    public <R extends View,T extends ViewCreator<P,R,R>>RxUIShowGallery<P,V> progress(T creator) {
         RxGalleryManager.getInstance().getUi().setProgressView(creator);
         return this;
     }

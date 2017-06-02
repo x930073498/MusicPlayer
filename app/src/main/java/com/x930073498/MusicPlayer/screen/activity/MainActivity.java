@@ -12,7 +12,7 @@ import com.x930073498.MusicPlayer.R;
 import com.x930073498.MusicPlayer.androidLib.PhotoGallery.RxGallery;
 import com.x930073498.MusicPlayer.androidLib.PhotoGallery.photoAttacher.ImageParser;
 import com.x930073498.MusicPlayer.androidLib.PhotoGallery.screen.interfaces.ImageEngine;
-import com.x930073498.MusicPlayer.androidLib.PhotoGallery.screen.interfaces.ShowContentCreator;
+import com.x930073498.MusicPlayer.androidLib.PhotoGallery.screen.interfaces.ViewCreator;
 import com.x930073498.MusicPlayer.androidLib.PhotoGallery.screen.model.PhotoItem;
 import com.x930073498.MusicPlayer.androidLib.RxResultActivity.RxResult;
 import com.x930073498.MusicPlayer.core.mvvm.BaseActivity;
@@ -21,6 +21,7 @@ import com.x930073498.MusicPlayer.screen.view.MainView;
 import com.x930073498.MusicPlayer.screen.viewModel.MainViewModel;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import io.reactivex.Observable;
 import io.reactivex.ObservableSource;
@@ -67,9 +68,9 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
            public void loadThumbnailAsync(PhotoItem item, ProgressBar imageView, ThumbnailCallback callback) {
 
            }
-       }).show(new ArrayList<>()).ui().content(new ShowContentCreator<PhotoItem, View, ProgressBar>() {
+       }).show(new ArrayList<>()).ui().action(new ViewCreator<PhotoItem, View, View>() {
            @Override
-           public View create(Dialog dialog, ViewGroup parent, int index, ArrayList<PhotoItem> source) {
+           public <L extends List<PhotoItem>> View create(Dialog dialog, ViewGroup parent, int index, L source) {
                return null;
            }
 
@@ -82,7 +83,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
            public ImageEngine.ThumbnailCallback thumbnailCallback(View view) {
                return null;
            }
-       });
+       }).start(this);
 
         RxResult
                 .of(ArrayList.class)

@@ -1,5 +1,8 @@
 package com.x930073498.MusicPlayer.androidLib.PhotoGallery.screen.model;
 
+import com.x930073498.MusicPlayer.androidLib.PhotoGallery.RxGallery;
+import com.x930073498.MusicPlayer.androidLib.PhotoGallery.screen.interfaces.ImageEngine;
+
 import java.util.List;
 
 /**
@@ -7,22 +10,45 @@ import java.util.List;
  */
 
 public class Config {
-    private boolean delete=false;
-    private List<PhotoItem> source;
+    private List<? extends PhotoItem> source;
+    private int defaultIndex;
+    private
+    @RxGallery.MODE
+    int mode;
+    private ImageEngine imageEngine;
 
-    public boolean isDelete() {
-        return delete;
+
+    public ImageEngine getImageEngine() {
+        return imageEngine;
     }
 
-    public void setDelete(boolean delete) {
-        this.delete = delete;
+    public void setImageEngine(ImageEngine imageEngine) {
+        this.imageEngine = imageEngine;
     }
 
-    public List<PhotoItem> getSource() {
+    public
+    @RxGallery.MODE
+    int getMode() {
+        return mode;
+    }
+
+    public void setMode(@RxGallery.MODE int mode) {
+        this.mode = mode;
+    }
+
+    public int getDefaultIndex() {
+        return defaultIndex;
+    }
+
+    public void setDefaultIndex(int defaultIndex) {
+        this.defaultIndex = defaultIndex;
+    }
+
+    public List<? extends PhotoItem> getSource() {
         return source;
     }
 
-    public void setSource(List<PhotoItem> source) {
+    public void setSource(List<? extends PhotoItem> source) {
         this.source = source;
     }
 }

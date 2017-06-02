@@ -1,12 +1,13 @@
 package com.x930073498.MusicPlayer.androidLib.PhotoGallery;
 
-import android.app.Application;
+import android.support.annotation.IntDef;
+import android.view.View;
 
-import com.x930073498.MusicPlayer.androidLib.PhotoGallery.dependencies.DaggerGalleryComponent;
-import com.x930073498.MusicPlayer.androidLib.PhotoGallery.screen.ImageEngine;
+import com.x930073498.MusicPlayer.androidLib.PhotoGallery.screen.interfaces.ImageEngine;
+import com.x930073498.MusicPlayer.androidLib.PhotoGallery.screen.edit.RxEditGallery;
 import com.x930073498.MusicPlayer.androidLib.PhotoGallery.screen.manager.RxGalleryManager;
-import com.x930073498.MusicPlayer.androidLib.PhotoGallery.screen.model.Config;
 import com.x930073498.MusicPlayer.androidLib.PhotoGallery.screen.model.PhotoItem;
+import com.x930073498.MusicPlayer.androidLib.PhotoGallery.screen.show.RxShowGallery;
 
 import java.util.List;
 
@@ -14,28 +15,37 @@ import java.util.List;
  * Created by x930073498 on 17-5-9.
  */
 
-public class RxGallery {
+public class RxGallery<P extends PhotoItem, V extends View> {
+    public final static int MODE_SHOW = 1;
+    public final static int MODE_EDIT = 2;
+
 
     private RxGallery() {
     }
 
-    public static void init(Application app, ImageEngine imageEngine) {
-        DaggerGalleryComponent.builder()
-                .app(app)
-                .build()
-                .inject(app);
+
+    public static <P extends PhotoItem, V extends View>  RxGallery<P,V> of(ImageEngine<P, V> engine) {
+        RxGalleryManager.getInstance().create();
+        RxGalleryManager.getInstance().setImageEngine(engine);
+        return new RxGallery<P, V>();
     }
 
-    public RxGallery of() {
-        return new RxGallery();
+
+    public RxEditGallery<P, V> edit(List<P> source) {
+        RxGalleryManager.getInstance().getConfig().setMode(MODE_EDIT);
+        return new RxEditGallery<>(source);
     }
 
-    public RxGallery source(List<PhotoItem> source) {
-        Config config = RxGalleryManager.getInstance().getConfig();
-        if (config == null) config = new Config();
-        config.setSource(source);
-        RxGalleryManager.getInstance().setConfig(config);
-        return this;
+    public RxShowGallery<P, V> show(List<P> source) {
+        RxGalleryManager.getInstance().getConfig().setMode(MODE_SHOW);
+        return new RxShowGallery<>(source);
     }
+
+    @IntDef(value = {MODE_SHOW
+            , MODE_EDIT
+    })
+    public @interface MODE {
+    }
+
 
 }

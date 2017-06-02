@@ -1,6 +1,9 @@
 package com.x930073498.MusicPlayer.androidLib.PhotoGallery.screen.manager;
 
+import com.x930073498.MusicPlayer.androidLib.PhotoGallery.screen.interfaces.ImageEngine;
+import com.x930073498.MusicPlayer.androidLib.PhotoGallery.screen.interfaces.ViewCreator;
 import com.x930073498.MusicPlayer.androidLib.PhotoGallery.screen.model.Config;
+import com.x930073498.MusicPlayer.androidLib.PhotoGallery.screen.model.UICreator;
 
 /**
  * Created by x930073498 on 17-5-10.
@@ -8,6 +11,18 @@ import com.x930073498.MusicPlayer.androidLib.PhotoGallery.screen.model.Config;
 
 public class RxGalleryManager {
     private RxGalleryManager() {
+    }
+
+    private ImageEngine imageEngine;
+
+    private UICreator<? extends ViewCreator, ? extends ViewCreator, ? extends ViewCreator, ? extends ViewCreator> uiCreator;
+
+    public ImageEngine getImageEngine() {
+        return imageEngine;
+    }
+
+    public void setImageEngine(ImageEngine imageEngine) {
+        this.imageEngine = imageEngine;
     }
 
     private Config config;
@@ -20,11 +35,17 @@ public class RxGalleryManager {
         return ManagerHolder.manager;
     }
 
-    public Config getConfig() {
-        return config;
+    public void create() {
+        config = new Config();
     }
 
-    public void setConfig(Config config) {
-        this.config = config;
+    public Config getConfig() {
+        return config = (config == null ? new Config() : config);
     }
+
+    public <T extends ViewCreator, R extends ViewCreator, V extends ViewCreator, S extends ViewCreator> UICreator<T, R, V, S> getUi() {
+        return (UICreator<T, R, V, S>) (uiCreator == null ? new UICreator<T, R, V, S>() : uiCreator);
+    }
+
+
 }

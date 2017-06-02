@@ -9,4 +9,7 @@ class A {
     fun print() ={
         println("test")
     }
+    fun printA(){
+        println("test")
+    }
 }

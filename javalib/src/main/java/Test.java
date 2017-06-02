@@ -1,18 +1,5 @@
 import com.A;
 
-import org.reactivestreams.Publisher;
-import org.reactivestreams.Subscriber;
-
-import java.util.concurrent.TimeUnit;
-
-import io.reactivex.Flowable;
-import io.reactivex.Observable;
-import io.reactivex.ObservableEmitter;
-import io.reactivex.ObservableOnSubscribe;
-import io.reactivex.Observer;
-import io.reactivex.annotations.NonNull;
-import io.reactivex.functions.Consumer;
-
 /**
  * Created by x930073498 on 17-4-27.
  */
@@ -20,7 +7,7 @@ import io.reactivex.functions.Consumer;
 public class Test {
     public static void main(String... arg0) {
         new A().print().invoke();
-//        Observable.create((ObservableOnSubscribe<Integer>) observer -> {
+        new A().printA();//        Observable.create((ObservableOnSubscribe<Integer>) observer -> {
 //            try {
 //                if (!observer.isDisposed()) {
 //                    for (int i = 0; i < 5; i++) {

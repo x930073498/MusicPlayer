@@ -41,7 +41,7 @@ public class PhotoItem extends BaseObservable {
 
     @IntDef(value = {NOT_UPDATE, UPDATING, UPDATED, UPDATE_FAILURE})
     @Retention(RetentionPolicy.SOURCE)
-    @interface UpdateStatus {
+  public @interface UpdateStatus {
     }
 
 

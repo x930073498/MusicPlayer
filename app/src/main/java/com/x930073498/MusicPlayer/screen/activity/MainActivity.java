@@ -1,14 +1,24 @@
 package com.x930073498.MusicPlayer.screen.activity;
 
+import android.app.Dialog;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import com.trello.rxlifecycle2.android.ActivityEvent;
 import com.x930073498.MusicPlayer.R;
+import com.x930073498.MusicPlayer.androidLib.PhotoGallery.RxGallery;
+import com.x930073498.MusicPlayer.androidLib.PhotoGallery.photoAttacher.ImageParser;
+import com.x930073498.MusicPlayer.androidLib.PhotoGallery.screen.interfaces.ImageEngine;
+import com.x930073498.MusicPlayer.androidLib.PhotoGallery.screen.interfaces.ShowContentCreator;
+import com.x930073498.MusicPlayer.androidLib.PhotoGallery.screen.model.PhotoItem;
+import com.x930073498.MusicPlayer.androidLib.RxResultActivity.RxResult;
+import com.x930073498.MusicPlayer.core.mvvm.BaseActivity;
 import com.x930073498.MusicPlayer.databinding.ActivityMainBinding;
 import com.x930073498.MusicPlayer.screen.view.MainView;
 import com.x930073498.MusicPlayer.screen.viewModel.MainViewModel;
-import com.x930073498.MusicPlayer.androidLib.RxResultActivity.RxResult;
-import com.x930073498.MusicPlayer.core.mvvm.BaseActivity;
 
 import java.util.ArrayList;
 
@@ -41,6 +51,39 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
     @SuppressWarnings("unchecked")
     @Override
     public void handStartActivity() {
+//
+       RxGallery.of(new ImageEngine<PhotoItem, ProgressBar>() {
+           @Override
+           public ImageParser<ProgressBar> parser() {
+               return null;
+           }
+
+           @Override
+           public void showSourceImage(PhotoItem item, ProgressBar imageView, Drawable placeholder, SourceCallback sourceCallback) {
+
+           }
+
+           @Override
+           public void loadThumbnailAsync(PhotoItem item, ProgressBar imageView, ThumbnailCallback callback) {
+
+           }
+       }).show(new ArrayList<>()).ui().content(new ShowContentCreator<PhotoItem, View, ProgressBar>() {
+           @Override
+           public View create(Dialog dialog, ViewGroup parent, int index, ArrayList<PhotoItem> source) {
+               return null;
+           }
+
+           @Override
+           public ImageEngine.SourceCallback sourceCallback(View view) {
+               return null;
+           }
+
+           @Override
+           public ImageEngine.ThumbnailCallback thumbnailCallback(View view) {
+               return null;
+           }
+       });
+
         RxResult
                 .of(ArrayList.class)
                 .activity(SecondActivity.class)
